@@ -1,25 +1,8 @@
 import { useState } from 'react'
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import { Menu, X, Phone, Mail, MapPin, Calendar, Users, Star, ChefHat, Sparkles, Clock, Award, Heart, Check } from 'lucide-react'
-//import chef_cooking from "./assets/images/chef_cooking.jpg"
-import MangoJuice from "./assets/images/MangoJuice.jpg"
-import food_table from "./assets/images/food_table.jpg"
-import fufu from "./assets/images/fufu.jpg"
-import GhanaJollof from "./assets/images/GhanaJollof.jpg"
-import GrilledChickenSalad from "./assets/images/GrilledChickenSalad.jpg"
-import chips from "./assets/images/chips.jpg"
-import fried_plaintain from "./assets/images/fried_plaintain.jpg"
-import grilled_chicken from "./assets/images/grilled_chicken.jpg"
-import pie from "./assets/images/pie.jpg"
-import pineapple_juice from "./assets/images/pineapple_juice.jpg"
-import samosa from "./assets/images/samosa.jpg"
-import sobolo from "./assets/images/sobolo.jpg"
-import springroll from "./assets/images/springroll.jpg"
-import BankuandOkroSoup from "./assets/images/BankuandOkroSoup.jpg"
-// import fried_rice_pinterest from "./assets/images/fried_rice_pinterest.jpg"
-import fried_rice_upstash from "./assets/images/fried_rice_upstash.jpg"
+import AuthDashboard from "./pages/AdminDashboard"
 import { supabase } from './supabaseClient'
-
-
 
 // BookingModal Component
 function BookingModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
@@ -49,15 +32,14 @@ function BookingModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
       `Special Requests: ${formData.specialRequests || 'None'}`
     )
     
-    // Replace with your actual WhatsApp business number (format: country code + number, no + or spaces)
-    const whatsappNumber = '0554953426'
+    const whatsappNumber = '233554953426'
     window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank')
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault()
   
-    if (formData.honeypot) return;
+    if (formData.honeypot) return
     if (
       !formData.fullName ||
       !formData.email ||
@@ -66,12 +48,12 @@ function BookingModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
       !formData.location ||
       !formData.guestCount
     ) {
-      setError("Please fill in all required fields");
-      return;
+      setError("Please fill in all required fields")
+      return
     }
   
-    setIsSubmitting(true);
-    setError("");
+    setIsSubmitting(true)
+    setError("")
   
     try {
       const { data, error } = await supabase
@@ -85,16 +67,15 @@ function BookingModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
             location: formData.location,
             guest_count: parseInt(formData.guestCount),
             special_requests: formData.specialRequests,
+            status: 'pending'
           },
-        ]);
+        ])
   
-      if (error) throw error;
+      if (error) throw error
   
-      console.log("Booking inserted successfully:", data);
-      setShowSuccess(true);
-        
-  
+      console.log("Booking inserted successfully:", data)
       setShowSuccess(true)
+  
       setTimeout(() => {
         setShowSuccess(false)
         onClose()
@@ -604,8 +585,8 @@ function BookingModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
   )
 }
 
-// Main App Component
-function App() {
+// Home Page Component
+function HomePage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isBookingOpen, setIsBookingOpen] = useState(false)
 
@@ -638,14 +619,12 @@ function App() {
           font-family: 'Playfair Display', serif;
         }
         
-        /* Navigation Styles */
         nav {
           background: rgba(255, 255, 255, 0.98);
           backdrop-filter: blur(10px);
           box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
         }
         
-        /* Hero Section */
         .hero-section {
           min-height: 100vh;
           display: flex;
@@ -793,7 +772,6 @@ function App() {
           color: #d4af37;
         }
         
-        /* Hero Image */
         .hero-image-wrapper {
           position: relative;
           animation: fadeInUp 1s ease-out 0.2s both;
@@ -843,7 +821,6 @@ function App() {
           opacity: 0.95;
         }
         
-        /* Services Section */
         .section {
           padding: 100px 24px;
         }
@@ -935,11 +912,6 @@ function App() {
           cursor: pointer;
         }
         
-        .service-link:hover {
-          gap: 12px;
-        }
-        
-        /* Menu Section */
         .menu-grid {
           display: grid;
           grid-template-columns: 1fr;
@@ -1021,7 +993,6 @@ function App() {
           color: #1a1a1a;
         }
         
-        /* Gallery */
         .gallery-grid {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
@@ -1054,7 +1025,6 @@ function App() {
           object-fit: cover;
         }
         
-        /* Testimonials */
         .testimonials-grid {
           display: grid;
           grid-template-columns: 1fr;
@@ -1112,7 +1082,6 @@ function App() {
           color: #999;
         }
         
-        /* CTA Section */
         .cta-section {
           background: #d4af37;
           padding: 100px 24px;
@@ -1153,7 +1122,6 @@ function App() {
           box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
         }
         
-        /* Footer */
         footer {
           background: #1a1a1a;
           color: white;
@@ -1221,7 +1189,6 @@ function App() {
           font-size: 14px;
         }
         
-        /* Mobile Menu */
         .mobile-menu {
           position: fixed;
           top: 64px;
@@ -1279,12 +1246,12 @@ function App() {
       <nav style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50 }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 24px' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '64px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none' }}>
               <ChefHat size={32} color="#d4af37" />
               <span className="font-serif" style={{ fontSize: '24px', fontWeight: '700', color: '#1a1a1a' }}>
                 Sky Lounge Catering Services
               </span>
-            </div>
+            </Link>
 
             {/* Desktop Menu */}
             <div style={{ display: 'none', gap: '32px', alignItems: 'center' }} className="desktop-nav">
@@ -1433,7 +1400,7 @@ function App() {
           {[
             { name: 'Kelewele', category: 'Appetizers', price: 'GH₵15', image: 'https://jfayuevyftepnhjxajah.supabase.co/storage/v1/object/public/Sky-Lounge-Images/fried_plaintain.webp' },
             { name: 'Jollof', category: 'Main Course', price: 'GH₵50', image: 'https://jfayuevyftepnhjxajah.supabase.co/storage/v1/object/public/Sky-Lounge-Images/GhanaJollof.webp'},
-            { name: 'Grilled chiken', category: 'Main Course', price: 'GH₵40', image: 'https://jfayuevyftepnhjxajah.supabase.co/storage/v1/object/public/Sky-Lounge-Images/grilled_chicken.webp'},
+            { name: 'Grilled chicken', category: 'Main Course', price: 'GH₵40', image: 'https://jfayuevyftepnhjxajah.supabase.co/storage/v1/object/public/Sky-Lounge-Images/grilled_chicken.webp'},
             { name: 'Grilled chicken Salad', category: 'Salads', price: 'GH₵20', image: 'https://jfayuevyftepnhjxajah.supabase.co/storage/v1/object/public/Sky-Lounge-Images/GrilledChickenSalad.webp' },
             { name: 'Sobolo', category: 'Desserts', price: 'GH₵10', image: 'https://jfayuevyftepnhjxajah.supabase.co/storage/v1/object/public/Sky-Lounge-Images/sobolo.jpg' },
             { name: 'Chips', category: 'Desserts', price: 'GH₵10', image: 'https://jfayuevyftepnhjxajah.supabase.co/storage/v1/object/public/Sky-Lounge-Images/chips.webp' }
@@ -1586,7 +1553,7 @@ function App() {
             </div>
           </div>
           <div className="footer-bottom">
-            <p>&copy; 2025 Sky Lounge Cathering Services. All rights reserved.</p>
+            <p>&copy; 2025 Sky Lounge Catering Services. All rights reserved.</p>
           </div>
         </div>
       </footer>
@@ -1597,4 +1564,14 @@ function App() {
   )
 }
 
-export default App
+// Main App Component with Router
+export default function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/dashboard" element={<AuthDashboard />} />
+      </Routes>
+    </Router>
+  )
+}
