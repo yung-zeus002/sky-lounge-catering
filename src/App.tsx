@@ -31,14 +31,14 @@ function BookingModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
       `Guest Count: ${formData.guestCount || '[Number]'}\n` +
       `Special Requests: ${formData.specialRequests || 'None'}`
     )
-    
+
     const whatsappNumber = '233554953426'
     window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank')
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-  
+
     if (formData.honeypot) return
     if (
       !formData.fullName ||
@@ -51,10 +51,10 @@ function BookingModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
       setError("Please fill in all required fields")
       return
     }
-  
+
     setIsSubmitting(true)
     setError("")
-  
+
     try {
       const { data, error } = await supabase
         .from("bookings")
@@ -70,12 +70,12 @@ function BookingModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
             status: 'pending'
           },
         ])
-  
+
       if (error) throw error
-  
+
       console.log("Booking inserted successfully:", data)
       setShowSuccess(true)
-  
+
       setTimeout(() => {
         setShowSuccess(false)
         onClose()
@@ -98,7 +98,7 @@ function BookingModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
       setIsSubmitting(false)
     }
   }
-  
+
   if (!isOpen) return null
 
   return (
@@ -387,7 +387,7 @@ function BookingModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
 
       <div className="booking-modal-overlay" onClick={onClose}>
         <div className="booking-modal-container" onClick={(e) => e.stopPropagation()}>
-        {showSuccess ? (
+          {showSuccess ? (
             <div className="booking-success-container">
               <div className="booking-success-icon">
                 <Check size={40} strokeWidth={3} />
@@ -420,7 +420,7 @@ function BookingModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
                   }}
                 >
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
                   </svg>
                   Message us on WhatsApp
                 </button>
@@ -1327,11 +1327,11 @@ function HomePage() {
                 </div>
               </div>
             </div>
-            
+
             <div className="hero-image-wrapper">
               <div className="hero-image-container">
                 <img
-                  src='https://jfayuevyftepnhjxajah.supabase.co/storage/v1/object/public/Sky-Lounge-Images/food_table.webp'
+                  src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/Sky-Lounge-Images/food_table.webp`}
                   alt="Elegant table setting with gourmet food"
                 />
               </div>
@@ -1399,15 +1399,15 @@ function HomePage() {
         <div className="menu-grid">
           {[
             { name: 'Kelewele', category: 'Appetizers', price: 'GH₵15', image: 'https://jfayuevyftepnhjxajah.supabase.co/storage/v1/object/public/Sky-Lounge-Images/fried_plaintain.webp' },
-            { name: 'Jollof', category: 'Main Course', price: 'GH₵50', image: 'https://jfayuevyftepnhjxajah.supabase.co/storage/v1/object/public/Sky-Lounge-Images/GhanaJollof.webp'},
-            { name: 'Grilled chicken', category: 'Main Course', price: 'GH₵40', image: 'https://jfayuevyftepnhjxajah.supabase.co/storage/v1/object/public/Sky-Lounge-Images/grilled_chicken.webp'},
+            { name: 'Jollof', category: 'Main Course', price: 'GH₵50', image: 'https://jfayuevyftepnhjxajah.supabase.co/storage/v1/object/public/Sky-Lounge-Images/GhanaJollof.webp' },
+            { name: 'Grilled chicken', category: 'Main Course', price: 'GH₵40', image: 'https://jfayuevyftepnhjxajah.supabase.co/storage/v1/object/public/Sky-Lounge-Images/grilled_chicken.webp' },
             { name: 'Grilled chicken Salad', category: 'Salads', price: 'GH₵20', image: 'https://jfayuevyftepnhjxajah.supabase.co/storage/v1/object/public/Sky-Lounge-Images/GrilledChickenSalad.webp' },
             { name: 'Sobolo', category: 'Desserts', price: 'GH₵10', image: 'https://jfayuevyftepnhjxajah.supabase.co/storage/v1/object/public/Sky-Lounge-Images/sobolo.jpg' },
             { name: 'Chips', category: 'Desserts', price: 'GH₵10', image: 'https://jfayuevyftepnhjxajah.supabase.co/storage/v1/object/public/Sky-Lounge-Images/chips.webp' }
           ].map((item, index) => (
             <div key={index} className="menu-card">
               <div className="menu-image">
-                <img src={item.image} alt={item.name} loading='lazy'/>
+                <img src={item.image} alt={item.name} loading='lazy' />
               </div>
               <div className="menu-content">
                 <div className="menu-header">
@@ -1434,14 +1434,14 @@ function HomePage() {
         </div>
         <div className="gallery-grid">
           {[
-            'https://jfayuevyftepnhjxajah.supabase.co/storage/v1/object/public/Sky-Lounge-Images/fried_rice_upstash.webp',
-            'https://jfayuevyftepnhjxajah.supabase.co/storage/v1/object/public/Sky-Lounge-Images/fufu.webp',
-            'https://jfayuevyftepnhjxajah.supabase.co/storage/v1/object/public/Sky-Lounge-Images/pie.webp',
-            'https://jfayuevyftepnhjxajah.supabase.co/storage/v1/object/public/Sky-Lounge-Images/pineapple_juice.jpg',
-            'https://jfayuevyftepnhjxajah.supabase.co/storage/v1/object/public/Sky-Lounge-Images/samosa.jpg',
-            'https://jfayuevyftepnhjxajah.supabase.co/storage/v1/object/public/Sky-Lounge-Images/BankuandOkroSoup.webp',
-            'https://jfayuevyftepnhjxajah.supabase.co/storage/v1/object/public/Sky-Lounge-Images/springroll.jpg',
-            'https://jfayuevyftepnhjxajah.supabase.co/storage/v1/object/public/Sky-Lounge-Images/MangoJuice.webp'
+            `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/Sky-Lounge-Images/fried_rice_upstash.webp`,
+            `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/Sky-Lounge-Images/fufu.webp`,
+            `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/Sky-Lounge-Images/pie.webp`,
+            `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/Sky-Lounge-Images/pineapple_juice.jpg`,
+            `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/Sky-Lounge-Images/samosa.jpg`,
+            `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/Sky-Lounge-Images/BankuandOkroSoup.webp`,
+            `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/Sky-Lounge-Images/springroll.jpg`,
+            `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/Sky-Lounge-Images/MangoJuice.webp`
           ].map((image, index) => (
             <div key={index} className="gallery-item">
               <img src={image} alt={`Gallery ${index + 1}`} loading='lazy' />
