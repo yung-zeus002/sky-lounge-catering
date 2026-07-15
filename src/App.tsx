@@ -1331,7 +1331,7 @@ function HomePage() {
             <div className="hero-image-wrapper">
               <div className="hero-image-container">
                 <img
-                  src={`${process.env.VITE_SUPABASE_URL}/storage/v1/object/public/Sky-Lounge-Images/food_table.webp`}
+                  src={`${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/Sky-Lounge-Images/food_table.webp`}
                   alt="Elegant table setting with gourmet food"
                 />
               </div>
@@ -1398,12 +1398,12 @@ function HomePage() {
         </div>
         <div className="menu-grid">
           {[
-            { name: 'Kelewele', category: 'Appetizers', price: 'GH₵15', image: `${process.env.VITE_SUPABASE_URL}/storage/v1/object/public/Sky-Lounge-Images/fried_plaintain.webp` },
-            { name: 'Jollof', category: 'Main Course', price: 'GH₵50', image: `${process.env.VITE_SUPABASE_URL}/storage/v1/object/public/Sky-Lounge-Images/GhanaJollof.webp` },
-            { name: 'Grilled chicken', category: 'Main Course', price: 'GH₵40', image: `${process.env.VITE_SUPABASE_URL}/storage/v1/object/public/Sky-Lounge-Images/grilled_chicken.webp` },
-            { name: 'Grilled chicken Salad', category: 'Salads', price: 'GH₵20', image: `${process.env.VITE_SUPABASE_URL}/storage/v1/object/public/Sky-Lounge-Images/GrilledChickenSalad.webp` },
-            { name: 'Sobolo', category: 'Desserts', price: 'GH₵10', image: `${process.env.VITE_SUPABASE_URL}/storage/v1/object/public/Sky-Lounge-Images/sobolo.jpg` },
-            { name: 'Chips', category: 'Desserts', price: 'GH₵10', image: `${process.env.VITE_SUPABASE_URL}/storage/v1/object/public/Sky-Lounge-Images/chips.webp` }
+            { name: 'Kelewele', category: 'Appetizers', price: 'GH₵15', image: `${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/Sky-Lounge-Images/fried_plaintain.webp` },
+            { name: 'Jollof', category: 'Main Course', price: 'GH₵50', image: `${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/Sky-Lounge-Images/GhanaJollof.webp` },
+            { name: 'Grilled chicken', category: 'Main Course', price: 'GH₵40', image: `${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/Sky-Lounge-Images/grilled_chicken.webp` },
+            { name: 'Grilled chicken Salad', category: 'Salads', price: 'GH₵20', image: `${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/Sky-Lounge-Images/GrilledChickenSalad.webp` },
+            { name: 'Sobolo', category: 'Desserts', price: 'GH₵10', image: `${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/Sky-Lounge-Images/sobolo.jpg` },
+            { name: 'Chips', category: 'Desserts', price: 'GH₵10', image: `${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/Sky-Lounge-Images/chips.webp` }
           ].map((item, index) => (
             <div key={index} className="menu-card">
               <div className="menu-image">
@@ -1434,14 +1434,14 @@ function HomePage() {
         </div>
         <div className="gallery-grid">
           {[
-            `${process.env.VITE_SUPABASE_URL}/storage/v1/object/public/Sky-Lounge-Images/fried_rice_upstash.webp`,
-            `${process.env.VITE_SUPABASE_URL}/storage/v1/object/public/Sky-Lounge-Images/fufu.webp`,
-            `${process.env.VITE_SUPABASE_URL}/storage/v1/object/public/Sky-Lounge-Images/pie.webp`,
-            `${process.env.VITE_SUPABASE_URL}/storage/v1/object/public/Sky-Lounge-Images/pineapple_juice.jpg`,
-            `${process.env.VITE_SUPABASE_URL}/storage/v1/object/public/Sky-Lounge-Images/samosa.jpg`,
-            `${process.env.VITE_SUPABASE_URL}/storage/v1/object/public/Sky-Lounge-Images/BankuandOkroSoup.webp`,
-            `${process.env.VITE_SUPABASE_URL}/storage/v1/object/public/Sky-Lounge-Images/springroll.jpg`,
-            `${process.env.VITE_SUPABASE_URL}/storage/v1/object/public/Sky-Lounge-Images/MangoJuice.webp`
+            `${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/Sky-Lounge-Images/fried_rice_upstash.webp`,
+            `${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/Sky-Lounge-Images/fufu.webp`,
+            `${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/Sky-Lounge-Images/pie.webp`,
+            `${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/Sky-Lounge-Images/pineapple_juice.jpg`,
+            `${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/Sky-Lounge-Images/samosa.jpg`,
+            `${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/Sky-Lounge-Images/BankuandOkroSoup.webp`,
+            `${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/Sky-Lounge-Images/springroll.jpg`,
+            `${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/Sky-Lounge-Images/MangoJuice.webp`
           ].map((image, index) => (
             <div key={index} className="gallery-item">
               <img src={image} alt={`Gallery ${index + 1}`} loading='lazy' />
